@@ -76,6 +76,7 @@ const urls = {
   },
   instance: (value) => {
     const query = stringify({ query: `("hrid"=="${value}" or "id"=="${value}")` });
+
     return `inventory/instances?${query}`;
   },
   loan: (value) => {
@@ -88,6 +89,7 @@ const urls = {
   },
   requestsForInstance: (value) => {
     const query = stringify({ query: `(instanceId=="${value}" and requestLevel=="${REQUEST_LEVEL_TYPES.TITLE}" and status=Open)` });
+
     return `request-storage/requests?${query}`;
   },
   requestPreferences: (value) => {

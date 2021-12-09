@@ -32,9 +32,9 @@ export const asyncValidateInstance = (values, props) => {
 
   uv.reset();
   return uv.GET({ params: { query } }).then((instances) => {
-    return (instances.length < 1)
-      ? { hrid: <FormattedMessage id="ui-requests.errors.instanceUuidOrHridDoesNotExist" /> }
-      : null;
+    return (instances.length)
+      ? null
+      : { hrid: <FormattedMessage id="ui-requests.errors.instanceUuidOrHridDoesNotExist" /> };
   });
 };
 

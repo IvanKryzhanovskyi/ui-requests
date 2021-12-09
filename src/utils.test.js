@@ -1,45 +1,23 @@
-import React from 'react';
-
 import {
   escape,
 } from 'lodash';
 import '../test/jest/__mock__';
 
 import {
-  // buildLocaleDateAndTime,
   buildTemplate,
-  // buildUrl,
-  // convertToSlipData,
   createUserHighlightBoxLink,
   duplicateRequest,
   escapeValue,
-  // formatNoteReferrerEntityData,
-  // getFullName,
-  // getPatronGroup,
-  // getRequestTypeOptions,
-  // hasNonRequestableStatus,
-  // isDelivery,
-  // isNotYetFilled,
-  // isPagedItem,
-  // isPageRequest,
-  // parseErrorMessage,
-  // toUserAddress,
-  // userHighlightBox,
   getTlrSettings,
   getRequestLevelValue,
   getInstanceRequestTypeOptions,
 } from './utils';
 
 import {
-  // requestTypesByItemStatus,
-  // requestTypeOptionMap,
   itemStatuses,
-  requestTypeOptionMap,
-  // fulfilmentTypeMap,
-  // requestStatuses,
   requestTypesMap,
-  // requestTypes,
   REQUEST_LEVEL_TYPES,
+  REQUEST_TYPES,
 } from './constants';
 
 describe('escapeValue', () => {
@@ -219,10 +197,7 @@ describe('getInstanceRequestTypeOptions', () => {
 
   it('should return `Page` request type if at least one available item is present', () => {
     const expectedResult = [
-      {
-        id: requestTypeOptionMap[requestTypesMap.PAGE],
-        value: requestTypesMap.PAGE,
-      },
+      REQUEST_TYPES[requestTypesMap.PAGE],
     ];
 
     expect(getInstanceRequestTypeOptions([missedItem, availableItem, checkedOutItem])).toEqual(expectedResult);
@@ -230,10 +205,7 @@ describe('getInstanceRequestTypeOptions', () => {
 
   it('should return `Hold` request type if only missing items is present', () => {
     const expectedResult = [
-      {
-        id: requestTypeOptionMap[requestTypesMap.HOLD],
-        value: requestTypesMap.HOLD,
-      },
+      REQUEST_TYPES[requestTypesMap.HOLD],
     ];
 
     expect(getInstanceRequestTypeOptions([missedItem])).toEqual(expectedResult);
@@ -241,14 +213,8 @@ describe('getInstanceRequestTypeOptions', () => {
 
   it('should return `Hold` and `Recall` request types if no available items and not all of them are missing', () => {
     const expectedResult = [
-      {
-        id: requestTypeOptionMap[requestTypesMap.HOLD],
-        value: requestTypesMap.HOLD,
-      },
-      {
-        id: requestTypeOptionMap[requestTypesMap.RECALL],
-        value: requestTypesMap.RECALL,
-      },
+      REQUEST_TYPES[requestTypesMap.HOLD],
+      REQUEST_TYPES[requestTypesMap.RECALL],
     ];
 
     expect(getInstanceRequestTypeOptions([missedItem, checkedOutItem])).toEqual(expectedResult);
